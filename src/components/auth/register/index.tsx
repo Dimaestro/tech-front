@@ -1,10 +1,9 @@
 import React, {JSX} from 'react';
 import {Button, TextField, Typography} from "@mui/material";
 import {NavLink} from "react-router-dom";
-import { IPropsLogin } from '../../../common/types/auth';
+import {IPropsRegister} from "../../../common/types/auth";
 
-const LoginPage: React.FC<IPropsLogin> = ({setEmail, setPassword}): JSX.Element => {
-
+const RegisterPage: React.FC<IPropsRegister> = ({setPassword, setUsername, setFirstName, setEmail}): JSX.Element => {
   return (
     <>
       <Typography
@@ -16,33 +15,48 @@ const LoginPage: React.FC<IPropsLogin> = ({setEmail, setPassword}): JSX.Element 
         fontWeight={600}
         textAlign='center'
       >
-        Log in
+        Sign up
       </Typography>
       <TextField
-        id='email'
+        fullWidth={true}
+        label="First name"
+        variant="outlined"
+        onChange={(e) => {
+          setFirstName(e.target.value);
+        }}
+      />
+      <TextField
+        fullWidth={true}
+        label="User name"
+        variant="outlined"
+        onChange={(e) => {
+          setUsername(e.target.value);
+        }}
+      />
+      <TextField
+        type='input'
         fullWidth={true}
         label="Email"
         variant="outlined"
         onChange={(e) => {
-          setEmail(e.target.value)
+          setEmail(e.target.value);
         }}
       />
       <TextField
-        id='password'
         type='password'
         fullWidth={true}
         label="Password"
         variant="outlined"
         onChange={(e) => {
-          setPassword(e.target.value)
+          setPassword(e.target.value);
         }}
       />
       <Button
-        variant="contained"
         type='submit'
+        variant="contained"
         size='large' sx={{fontFamily: 'Poppins', minWidth: '150px', marginTop: '24px'}}
       >
-        Log in
+        Sign up
       </Button>
       <Typography
         variant="body1"
@@ -53,13 +67,13 @@ const LoginPage: React.FC<IPropsLogin> = ({setEmail, setPassword}): JSX.Element 
         fontWeight={500}
         textAlign='center'
       >
-        Don't have an account?
-        <NavLink to={'/register'} className='link'>
-          Sign up
+        Do you have an account?
+        <NavLink to={'/login'} className='link'>
+          Log in
         </NavLink>
       </Typography>
     </>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
